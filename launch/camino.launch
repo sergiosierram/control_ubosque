@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+	<!--node name="nodo_camino" pkg="control_ubosque" type="nodo_camino.py" output="screen">
+		<rosparam file="$(find control_ubosque)/config/camino_parameters.yaml" command="load"/>
+	</node-->
+
+	<node name="nodo_control_camino" pkg="control_ubosque" type="nodo_control_camino.py" output="screen">
+		<rosparam file="$(find control_ubosque)/config/control_camino_parameters.yaml" command="load"/>
+	</node>
+</launch>

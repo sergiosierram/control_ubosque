@@ -1,0 +1,8 @@
+gamma: 0.7
+k: 0.7
+control_rate: 30
+odom_topic: "/odometry/filtered"
+cmd_vel_topic: "/cmd_vel"
+error_topic: "/error"
+goal_topic: "/move_base_simple/goal"
+update_params_service: "/update_parameters"

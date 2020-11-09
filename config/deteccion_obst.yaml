@@ -1,0 +1,8 @@
+eps: 0.1
+min_samples: 5
+frame_id: "odom"
+scan_topic: "/scan"
+obstacles_topic: "/obstacles"
+frame_id: "odom"
+control_rate: 30
+update_params_service: "/update_parameters"

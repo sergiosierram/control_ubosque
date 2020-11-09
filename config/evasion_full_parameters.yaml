@@ -1,0 +1,13 @@
+c1: 2
+c2: 1
+sigma: 1 #en metros
+sigma2: 1.3 #en radianes
+sigma3: 2
+radio: 2
+frame_id: "odom"
+scan_topic: "/scan"
+odom_topic: "/odometry/filtered"
+theta_topic: "/theta_object"
+dtilde_topic: "/dtilde"
+control_rate: 100
+update_params_service: "/update_parameters"

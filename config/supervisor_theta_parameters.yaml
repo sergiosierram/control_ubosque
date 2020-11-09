@@ -1,0 +1,8 @@
+radio:  2
+theta_object_topic:  "/theta_object"
+theta_desired_topic:  "/theta_desired"
+theta_path_topic:  "/theta_path"
+odom_topic: "/odometry/filtered"
+dtilde_topic:  "/dtilde"
+control_rate: 100
+update_params_service: "/update_parameters"

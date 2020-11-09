@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+	<node name="nodo_posicion" pkg="control_ubosque" type="nodo_posicion.py" output="screen">
+		<rosparam file="$(find control_ubosque)/config/posicion_parameters.yaml" command="load"/>
+	</node>	
+</launch>

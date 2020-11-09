@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+	<node name="nodo_deteccion" pkg="control_ubosque" type="nodo_deteccion_obst.py" output="screen">
+		<rosparam file="$(find control_ubosque)/config/deteccion_obst.yaml" command="load"/>
+	</node>	
+</launch>

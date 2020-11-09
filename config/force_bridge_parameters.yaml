@@ -1,0 +1,4 @@
+vel_topic: "/aux_cmd_vel"
+force_topic: "/force"
+control_rate: 100
+update_params_service: "/update_parameters"

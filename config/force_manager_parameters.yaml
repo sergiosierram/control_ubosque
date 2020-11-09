@@ -1,0 +1,8 @@
+theta_desired_topic: "/theta_desired"
+force_topic: "/force"
+virtual_wrench_topic: "/virtual_wrench"
+shared_wrench_topic: "/shared_wrench"
+frc_sensors_distance: 0.8
+k_virtual_torque: 60
+manager_rate: 100
+update_params_service: "/update_parameters"

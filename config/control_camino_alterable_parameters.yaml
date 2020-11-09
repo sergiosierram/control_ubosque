@@ -1,0 +1,13 @@
+v_ref: 0.15
+ly: 1.5
+lx: 1.5
+ky: 0.7
+kx: 0.7
+stop_distance: 0.15
+path_topic: "/path"
+odom_topic: "/odometry/filtered"
+cmd_vel_topic: "/cmd_vel"
+goal_topic: "/move_base_simple/goal"
+pos_reached_topic: "/pos_reached"
+control_rate: 100
+update_params_service: "/update_parameters"

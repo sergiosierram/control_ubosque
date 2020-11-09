@@ -1,0 +1,10 @@
+kp: 5
+ki: 1
+kd: 0.1
+control_rate: 30
+v_limit: 0.4
+w_limit: 0.25
+odom_topic: "/odometry/filtered"
+cmd_vel_topic: "/cmd_vel"
+setpoint_topic: "/setpoint"
+update_params_service: "/update_parameters"

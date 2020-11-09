@@ -1,0 +1,15 @@
+v_ref: 0.3
+ly: 3
+lx: 3
+ky: 0.7
+kx: 0.7
+stop_distance: 0.04
+publish_vel: True
+publish_theta: True
+#path_topic: "/path"
+path_topic: "/move_base/NavfnROS/plan"
+odom_topic: "/odometry/filtered"
+cmd_vel_topic: "/cmd_vel"
+theta_topic: "/theta_path"
+control_rate: 100
+update_params_service: "/update_parameters"

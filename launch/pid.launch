@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+	<node name="nodo_pid" pkg="control_ubosque" type="nodo_pid.py" output="screen">
+		<rosparam file="$(find control_ubosque)/config/pid_parameters.yaml" command="load"/>
+	</node>	
+</launch>

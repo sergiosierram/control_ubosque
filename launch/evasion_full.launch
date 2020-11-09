@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+	<node name="nodo_evasion_full" pkg="control_ubosque" type="nodo_evasion_full.py" output="screen">
+		<rosparam file="$(find control_ubosque)/config/evasion_full_parameters.yaml" command="load"/>
+	</node>
+
+	<node name="nodo_control_camino" pkg="control_ubosque" type="nodo_control_camino.py" output="screen">
+		<rosparam file="$(find control_ubosque)/config/control_camino_parameters.yaml" command="load"/>
+	</node>
+
+	<node name="nodo_camino" pkg="control_ubosque" type="nodo_camino.py" output="screen">
+		<rosparam file="$(find control_ubosque)/config/camino_parameters.yaml" command="load"/>
+	</node>
+
+	<node name="nodo_supervisor_theta" pkg="control_ubosque" type="nodo_supervisor_theta.py" output="screen">
+		<rosparam file="$(find control_ubosque)/config/supervisor_theta_parameters.yaml" command="load"/>
+	</node>
+
+	<node name="nodo_force_bridge" pkg="control_ubosque" type="nodo_force_bridge.py" output="screen">
+		<rosparam file="$(find control_ubosque)/config/force_bridge_parameters.yaml" command="load"/>
+	</node>
+
+	<node name="nodo_force_manager" pkg="control_ubosque" type="nodo_force_manager.py" output="screen">
+		<rosparam file="$(find control_ubosque)/config/force_manager_parameters.yaml" command="load"/>
+	</node>
+
+	<node name="nodo_admitancia" pkg="control_ubosque" type="nodo_admitancia.py" output="screen">
+		<rosparam file="$(find control_ubosque)/config/admitancia_parameters.yaml" command="load"/>
+	</node>
+</launch>
