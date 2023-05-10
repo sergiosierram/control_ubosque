@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import rospy
 import numpy as np
 from tf.transformations import euler_from_quaternion as efq
@@ -89,6 +89,7 @@ class PosControl():
 		quat = msg.pose.orientation
 		self.theta_goal = efq([quat.x, quat.y, quat.z, quat.w])[2]
 		self.change_goal = True
+		return
 
 	def getDistance(self, x1, y1, x2, y2):
 		d = np.sqrt(np.power(x1-x2, 2) + np.power(y1-y2, 2))
@@ -102,7 +103,9 @@ class PosControl():
 			self.active = False
 			self.v = self.w = 0
 			rospy.loginfo("[%s] Goal reached!", self.name)
-			self.pub_pos_reached.publish(True)
+			self.pub_pos_reached.publish(True) 
+			self.makeVelMsg()
+			self.pub_vel.publish(self.msg_vel)
 		else:
 			self.active = True
 			self.v = self.gamma*np.tanh(e)*np.cos(alpha)

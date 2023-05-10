@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import rospy
 import numpy as np
 from tf.transformations import euler_from_quaternion as efq
@@ -109,7 +109,12 @@ class PathControl():
 		#Extraer x & y deseados
 		self.x_desired = self.x_path[loc]
 		self.y_desired = self.y_path[loc]
-		self.theta_ref = self.theta_path[loc]
+		print(self.x_desired)
+		print(self.y_desired)
+		if loc >= len(self.theta_path):
+			self.theta_ref = self.theta_path[loc-1]
+		else:
+			self.theta_ref = self.theta_path[loc]
 		if dmin <= self.stop_distance and loc < self.path_size:
 			rospy.loginfo("[%s] Reached pose %d at [%f, %f] - Robot [%f, %f]!", self.name, loc, self.x_desired, self.y_desired, self.x_bot, self.y_bot)
 			loc += 1
@@ -121,17 +126,42 @@ class PathControl():
 				self.goal_reached = False
 				self.x_desired = self.x_path[loc]
 				self.y_desired = self.y_path[loc]
+				if loc >= len(self.theta_path):
+					loc = len(self.theta_path) - 1
 				self.theta_ref = self.theta_path[loc]
 		return
 
 	def getDistance(self, x1, y1, x2, y2):
 		d = np.sqrt(np.power(x1-x2, 2) + np.power(y1-y2, 2))
 		return d
+	
+	def closestPoint2(self):
+		#Extraer x & y deseados
+		self.x_desired = self.x_path[self.loc]
+		self.y_desired = self.y_path[self.loc]
+		self.theta_ref = self.theta_path[self.loc]
+		return
 
 	def controller(self):
-		self.closestPoint()
+		#self.closestPoint()
+		self.closestPoint2()
 		x_error = self.x_desired - self.x_bot
 		y_error = self.y_desired - self.y_bot
+		if abs(x_error) < self.stop_distance and abs(y_error) < self.stop_distance:
+			rospy.loginfo("[%s] Reached pose %d at [%f, %f] - Robot [%f, %f]!", self.name, self.loc, self.x_desired, self.y_desired, self.x_bot, self.y_bot)
+			#Estimar la distancia a todos los puntos del camino
+			d = np.sqrt(np.power((self.x_path - self.x_bot),2) + np.power((self.y_path - self.y_bot),2))
+			#Estimar la posicion de la distancia minima
+			loc = np.argmin(d)
+			self.loc+= 1
+			print("loc: "+str(loc)+" "+str(self.loc))
+			if loc > self.loc:
+				self.loc = loc
+			if self.loc == len(self.theta_path):
+				rospy.loginfo("[%s] Path ended!", self.name)
+				self.goal_reached = True
+				return
+
 		x_point = self.v_ref*np.cos(self.theta_ref)+ self.lx*np.tanh((self.kx/self.lx)*x_error)
 		y_point = self.v_ref*np.sin(self.theta_ref)+ self.ly*np.tanh((self.ky/self.ly)*y_error)
 		c_inv = np.array( [[np.cos(self.theta_bot), np.sin(self.theta_bot)],

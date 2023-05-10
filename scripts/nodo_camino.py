@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import rospy
 import numpy as np
 import csv
@@ -61,7 +61,8 @@ class PosControl():
 				csv_reader = csv.reader(csv_file, delimiter=",")
 				for counter, row in enumerate(csv_reader):
 					if counter > 0:
-						row_float = np.reshape(map(float, np.array(row)), (1, 2))
+						row_float = list(map(float, row))
+						row_float = np.reshape(np.array(row_float), (1, 2))
 						if counter == 1:
 							self.poses = row_float
 						else:

@@ -1,4 +1,4 @@
-csv_file: "/home/walker/catkin_ws/src/control_ubosque/config/paths/path_points1.csv"
+csv_file: "/home/sergiosierra/catkin_ws/src/control_ubosque/config/paths/path_points1.csv"
 csv_header: True
 delay: 5
 frame_id: "odom"

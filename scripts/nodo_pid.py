@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import rospy
 import numpy as np
 from nav_msgs.msg import Odometry
@@ -73,8 +73,11 @@ class PIDControl():
 		self.derror = self.error_prev - self.error
 		self.ierror = self.error_prev + self.error
 		self.error_prev = self.error
-		self.v = self.kp*self.error + self.ki*self.ierror + self.kd*self.derror
-		self.v = self.v_limit*np.tanh(0.5*self.v)
+		if abs(self.error) > 0.1:
+			self.v = self.kp*self.error + self.ki*self.ierror + self.kd*self.derror
+			self.v = self.v_limit*np.tanh(0.5*self.v)
+		else:
+			self.v = 0
 		return
 
 	def makeVelMsg(self):
